@@ -1,3 +1,6 @@
+let lifes = 15;
+let countWin = 0;
+
 function generateGame(word) {
     const gameArray = [];
     let wordLength = word.length;
@@ -11,7 +14,7 @@ function generateGame(word) {
             checkLetter(document.getElementById('word').value.toLowerCase(), word, gameArray, lifes);
         }; //change start event
     let newButton = document.createElement("button"); //create reset button
-    newButton.innerHTML = "Reset";
+    newButton.innerHTML = "Reset the game";
     newButton.className = "btn-sm btn-primary";
     newButton.onclick = function () { reset(); };
     document.getElementById("form").appendChild(newButton);
@@ -25,7 +28,7 @@ function reset() {
 }
 
 function checkLetter(letter, word, gameArray, lifes) {
-    document.getElementById('word').value = "";
+    let wordLength = word.length;
     let foundIndex = word.indexOf(letter);
     if (foundIndex == -1) {
         document.getElementById("foundOrNot").innerHTML = "Wrong letter!";
@@ -34,15 +37,33 @@ function checkLetter(letter, word, gameArray, lifes) {
         while (foundIndex > -1) {
             gameArray[foundIndex] = letter;
             foundIndex = word.indexOf(letter, foundIndex + 1);
+            ++countWin;
         }
         document.getElementById("gameBoard").innerHTML = gameArray.join(" | ");
-        document.getElementById("foundOrNot").innerHTML = "Well done!";
+        document.getElementById("foundOrNot").innerHTML = "Well done! " + (wordLength - countWin) + " more letters to guess.";
+    }
+    winOrLose(wordLength, countWin, word);
+}
+
+function decreaseLifes () {
+    lifes--;
+    document.getElementById("lifes").innerHTML = "You have " + lifes + " more attempts!";
+}
+
+function winOrLose(wordLength, countWin, word) {
+    let message = document.createElement("p");
+    if (countWin === wordLength) {
+        message.innerHTML = "YOU WON!";
+        display(message);
+    } else if (lifes === 0) {
+        message.innerHTML = "YOU LOSE! The word was: " + word.toUpperCase() + ".";
+        display(message);
     }
 }
 
-let lifes = 14;
-
-function decreaseLifes () {
-    document.getElementById("lifes").innerHTML = "You have " + lifes-- + " more attempts!";
+function display(message) {
+    document.getElementById("inputArea").appendChild(message);
+    document.getElementById("word").disabled = true;
+    document.getElementById("button").disabled = true;
 }
 
