@@ -16,6 +16,7 @@
     <body>
         <div id = "inputArea" class = "position-absolute top-50 start-50 translate-middle">
           <div>
+              <p id = "lifes"></p>
               <form id = "form" method = "post" onsubmit = "return false">
                 <input id = "word" type = "text" class = "form-control-sm" value = "Hangman">
                 <button id = "button" type = "button" class = "btn-sm btn-primary" onclick = "generateGame(document.getElementById('word').value.toLowerCase())">Start</button>
