@@ -11,7 +11,7 @@ function generateGame(word) {
     document.getElementById("gameBoard").innerHTML = gameArray.join(" | "); //display bars
     document.getElementById("button").innerHTML = "Check this letter"; //change start button
     document.getElementById("button").onclick = function () {
-            checkLetter(document.getElementById('word').value.toLowerCase(), word, gameArray, lifes);
+        checkLetterPattern(document.getElementById('word').value.toLowerCase(), word, gameArray);
         }; //change start event
     let newButton = document.createElement("button"); //create reset button
     newButton.innerHTML = "Reset the game";
@@ -27,7 +27,7 @@ function reset() {
     location.reload();
 }
 
-function checkLetter(letter, word, gameArray, lifes) {
+function checkLetter(letter, word, gameArray) {
     let wordLength = word.length;
     let foundIndex = word.indexOf(letter);
     if (foundIndex == -1) {
@@ -42,7 +42,7 @@ function checkLetter(letter, word, gameArray, lifes) {
         document.getElementById("gameBoard").innerHTML = gameArray.join(" | ");
         document.getElementById("foundOrNot").innerHTML = "Well done! " + (wordLength - countWin) + " more letters to guess.";
     }
-    winOrLose(wordLength, countWin, word);
+    winOrLose(wordLength, word);
 }
 
 function decreaseLifes () {
@@ -50,7 +50,7 @@ function decreaseLifes () {
     document.getElementById("lifes").innerHTML = "You have " + lifes + " more attempts!";
 }
 
-function winOrLose(wordLength, countWin, word) {
+function winOrLose(wordLength, word) {
     let message = document.createElement("p");
     if (countWin === wordLength) {
         message.innerHTML = "YOU WON!";
@@ -62,8 +62,27 @@ function winOrLose(wordLength, countWin, word) {
 }
 
 function display(message) {
+    document.getElementById("foundOrNot").innerHTML = "";
     document.getElementById("inputArea").appendChild(message);
     document.getElementById("word").disabled = true;
     document.getElementById("button").disabled = true;
 }
 
+function checkWordPattern(word) {
+    const wordPattern = /^.[a-z]+$/;
+    if (wordPattern.test(word)) {
+        document.getElementById("lifes").innerHTML = "Enter a single letter:";
+        generateGame(word);
+    } else {
+        document.getElementById("lifes").innerHTML = "Please enter a word!";
+    }
+}
+
+function checkLetterPattern(letter, word, gameArray) {
+    const letterPattern = /^[a-z]?$/;
+    if (letterPattern.test(letter) && letter != "") {
+        checkLetter(letter, word, gameArray);
+    } else {
+        document.getElementById("lifes").innerHTML = "Please enter a single letter!";
+    }
+}
