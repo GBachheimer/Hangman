@@ -24,3 +24,16 @@ function reset() {
     location.reload();
 }
 
+function checkLetter(letter, word, gameArray) {
+    let foundIndex = word.indexOf(letter);
+    if (foundIndex == -1) {
+        document.getElementById("foundOrNot").innerHTML = "Wrong letter!";
+    } else {
+        while (foundIndex > -1) {
+            gameArray[foundIndex] = letter;
+            foundIndex = word.indexOf(letter, foundIndex + 1);
+        }
+        document.getElementById("gameBoard").innerHTML = gameArray.join(" | ");
+        document.getElementById("foundOrNot").innerHTML = "Well done!";
+    }
+}
