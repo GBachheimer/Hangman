@@ -19,9 +19,9 @@
         </div>
         <div id = "inputArea" class = "position-absolute top-50 start-50 translate-middle bg-dark rounded" style = "color: white">
           <div id = "centralDiv" class = "text-center px-4 py-4" >
-              <p id = "lifes"></p>
+              <p id = "lifes" class = "px-5">Player 1 thinks of a word and writes it here. Hit start when ready.</p>
               <form id = "form" method = "post" onsubmit = "return false">
-                <input id = "word" type = "text" class = "form-control-sm" value = "Hangman">
+                <input id = "word" type = "password" class = "form-control-sm" value = "Hangman">
                 <button id = "button" type = "button" class = "btn-sm btn-info" onclick = "checkWordPattern(document.getElementById('word').value.toLowerCase())">Start</button>
               </form>
               <h1 id = "gameBoard" >

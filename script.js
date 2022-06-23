@@ -41,7 +41,11 @@ function checkLetter(letter, word, gameArray) {
             ++countWin;
         }
         document.getElementById("gameBoard").innerHTML = gameArray.join(" | ");
-        document.getElementById("lifes").innerHTML = "Well done! " + (wordLength - countWin) + " more letters to guess.";
+        let correction = "letters";
+        if (wordLength - countWin <= 1) {
+            correction = "letter";
+        }
+        document.getElementById("lifes").innerHTML = "Well done! " + (wordLength - countWin) + " more " + correction + " to guess.";
     }
     winOrLose(wordLength, word);
 }
@@ -74,7 +78,9 @@ function display(message) {
 function checkWordPattern(word) {
     const wordPattern = /^.[a-z]+$/;
     if (wordPattern.test(word)) {
+        document.getElementById("lifes").innerHTML = "Player 2 guess the word letter by letter. Good luck!";
         generateGame(word);
+        document.getElementById("word").type = "text";
     } else {
         document.getElementById("lifes").innerHTML = "Please enter a word!";
     }
