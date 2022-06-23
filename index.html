@@ -14,15 +14,16 @@
         </style>
     </head>
     <body>
-        <div id = "inputArea" class="position-absolute top-50 start-50 translate-middle">
+        <div id = "inputArea" class = "position-absolute top-50 start-50 translate-middle">
           <div>
-              <form method = "post" onsubmit = "return false">
-                <input id = "word" type = "text" class = "form-control-lg" value = "Hangman">
-                <button id = "button" type = "button" class = "btn-lg btn-primary" onclick = "generateGame(document.getElementById('word').value)">Create game</button>
+              <form id = "form" method = "post" onsubmit = "return false">
+                <input id = "word" type = "text" class = "form-control-sm" value = "Hangman">
+                <button id = "button" type = "button" class = "btn-sm btn-primary" onclick = "generateGame(document.getElementById('word').value.toLowerCase())">Start</button>
               </form>
+              <h1 id = "gameBoard" >
+              </h1>
+              <p id = "foundOrNot"></p>
           </div>
         </div>
-        <h1 id = "gameBoard" class="position-absolute top-50 start-50 translate-middle">
-        </h1>
     </body>
 </html>
