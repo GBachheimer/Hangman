@@ -88,9 +88,9 @@ function checkWordPattern(word) {
 
 function checkLetterPattern(letter, word, gameArray) {
     const letterPattern = /^[a-z]?$/;
-    if (letterPattern.test(letter) && letter != "") {
+    if (letterPattern.test(letter) && letter != "" && !gameArray.includes(letter.toUpperCase())) {
         checkLetter(letter, word, gameArray);
     } else {
-        document.getElementById("lifes").innerHTML = "Please enter a single letter!";
+        document.getElementById("lifes").innerHTML = "Please enter a single letter, different from the ones guessed so far!";
     }
 }
