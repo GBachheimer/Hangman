@@ -1,4 +1,4 @@
-let lifes = 15;
+let lives = 15;
 let countWin = 0;
 
 function generateGame(word) {
