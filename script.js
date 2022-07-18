@@ -1,5 +1,17 @@
-let lives = 15;
+let lives = 10;
 let countWin = 0;
+const canvas = document.getElementById("drawing");
+const ctx = canvas.getContext("2d");
+ctx.beginPath();
+ctx.moveTo(150, 275);
+ctx.lineTo(25, 275);
+ctx.moveTo(75, 275);
+ctx.lineTo(75, 25);
+ctx.lineTo(150, 25);
+ctx.lineTo(150, 75);
+ctx.lineWidth = 5;
+ctx.strokeStyle = "white";
+ctx.stroke();
 
 function generateGame(word) {
     const gameArray = [];
@@ -52,6 +64,66 @@ function checkLetter(letter, word, gameArray) {
 function decreaseLives() {
     --lives;
     document.getElementById("lives").innerHTML = "Wrong letter! You have " + lives + " more attempts!";
+    switch (lifes) {
+        case 9:
+            ctx.beginPath();
+            ctx.arc(150, 100, 25, 0, 2 * Math.PI);
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            break;
+        case 8:
+            ctx.beginPath();
+            ctx.moveTo(150, 125);
+            ctx.lineTo(150, 175);
+            ctx.stroke();
+            break;
+        case 7:
+            ctx.beginPath();
+            ctx.moveTo(150, 175);
+            ctx.lineTo(175, 225);
+            ctx.stroke();
+            break;
+        case 6:
+            ctx.beginPath();
+            ctx.moveTo(150, 175);
+            ctx.lineTo(125, 225);
+            ctx.stroke();
+            break;
+        case 5:
+            ctx.beginPath();
+            ctx.moveTo(150, 125);
+            ctx.lineTo(175, 175);
+            ctx.stroke();
+            break;
+        case 4:
+            ctx.beginPath();
+            ctx.moveTo(150, 125);
+            ctx.lineTo(125, 175);
+            ctx.stroke();
+            break;
+        case 3:
+            ctx.beginPath();
+            ctx.moveTo(137, 95);
+            ctx.lineTo(142, 95);
+            ctx.stroke();
+            break;
+        case 2:
+            ctx.beginPath();
+            ctx.moveTo(158, 95);
+            ctx.lineTo(163, 95);
+            ctx.stroke();
+            break;
+        case 1:
+            ctx.beginPath();
+            ctx.moveTo(150, 100);
+            ctx.lineTo(150, 105);
+            ctx.stroke();
+            break;
+        case 0:
+            ctx.beginPath();
+            ctx.arc(150, 120, 8, 0, Math.PI, true);
+            ctx.stroke();
+    }
 }
 
 function winOrLose(wordLength, word) {
