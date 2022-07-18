@@ -64,7 +64,7 @@ function checkLetter(letter, word, gameArray) {
 function decreaseLives() {
     --lives;
     document.getElementById("lives").innerHTML = "Wrong letter! You have " + lives + " more attempts!";
-    switch (lifes) {
+    switch (lives) {
         case 9:
             ctx.beginPath();
             ctx.arc(150, 100, 25, 0, 2 * Math.PI);
